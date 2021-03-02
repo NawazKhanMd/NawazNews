@@ -1,0 +1,17 @@
+
+//
+// Bootstrap modules
+//
+
+$blue:#2699FB;
+$orange:#FF565E;
+$white:rgb(255,255,255);
+$black:#000000;
+$yelow:#FBC91B;
+$grey: #AFA79F;
+$darkGrey: #8D8680;
+
+@function pixelX5($multiple: 1) {
+    @return $multiple * 5px;
+  }
+

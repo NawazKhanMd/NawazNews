@@ -1,0 +1,179 @@
+@import "variables";
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+body,
+html {
+    background-color: $white;
+}
+
+#root {
+    height: 100vh;
+}
+
+.App {
+    font-family: "Lato";
+    height: 100vh;
+    overflow: hidden;
+}
+
+//reusable stylings
+.f_row {
+    flex-direction: row;
+}
+.f-cloumn {
+    flex-direction: column;
+}
+.padding100{
+    padding: 100px !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.fontS16 {
+    font-size: 16px;
+}
+.cross {
+    transform: rotate(45deg);
+}
+.d-contents {
+    display: contents;
+}
+.padding-r-0 {
+    padding-right: 0px !important;
+}
+.margin-r_10 {
+    margin-right: -10px;
+}
+.margin_t_20 {
+    margin-top: 20px;
+}
+
+.borderRight {
+    border-right: 1px solid $black;
+    margin-right: 5px;
+}
+.inverted {
+    transform: rotate(180deg);
+}
+.fSize30 {
+    font-size: 30px;
+}
+.fSize20 {
+    font-size: 20px;
+}
+.fSize10 {
+    font-size: 10px;
+}
+.padding-zero {
+    padding: 0px !important;
+}
+.h100-OYA {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    padding-bottom: 50px;
+}
+.h100-OYA::-webkit-scrollbar {
+    display: none;
+}
+.margin0 {
+    margin: pixelX5(0) !important;
+}
+.width100 {
+    width: 100%;
+}
+.orange-text {
+    color: $orange;
+    letter-spacing: 2;
+}
+.small-text-size {
+    font-size: 13px;
+}
+.red-border {
+    border-bottom: 2px solid #ff5230;
+}
+.yellow-border {
+    border-bottom: 2px solid #ffc444;
+}
+.green-border {
+    border-bottom: 2px solid #60d82d;
+}
+.padding-l-5 {
+    padding-left: 5px !important;
+}
+.padding-5 {
+    padding: 5px !important;
+}
+.padding-10 {
+    padding: 10px !important;
+}
+.margin-10 {
+    margin: 10px;
+}
+.marginL20B0 {
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-col {
+    flex-direction: column;
+}
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.margin-r-10 {
+    margin-right: 10px;
+}
+.display-flex {
+    display: flex;
+}
+.one-line {
+    flex-direction: row;
+    p {
+        display: contents;
+    }
+    h3 {
+        display: contents;
+    }
+}
+.fSize24{
+    font-size: 24px;
+}
+.flex1 {
+    flex: 1;
+}
+.f-wrap {
+    flex-wrap: wrap;
+}
+.tab_space {
+    display: inline-block;
+    margin-left: 40px;
+}
+.seperator {
+    border-right: 1px solid $grey;
+    border-right-style: dashed;
+}
+.layoutContainer{
+    padding: 20px;
+}
+
+//media Quiries
+
+@media only screen and (max-width: 600px) {
+
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
