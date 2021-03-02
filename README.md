@@ -1,4 +1,4 @@
-# user Registration
+# Nawaz News
 
 React JS application 
 Responsive Site --- Using Redux, Redux Saga.
