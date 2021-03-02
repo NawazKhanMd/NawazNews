@@ -1,14 +1,15 @@
 
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getNews } from '../../ReduxFiles/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTopNews } from '../../ReduxFiles/actions';
 
 export const Home = () => {
     const dispatch = useDispatch()
+    const TopNewsCodes = useSelector(state=> state.GData.TopNewsCodes)
     useEffect(() => {
-        dispatch(getNews());
+        dispatch(getTopNews());
     }, [dispatch])
     return (
-        <div>Hello</div>
+        <div>{JSON.stringify(TopNewsCodes)}</div>
     )
 }

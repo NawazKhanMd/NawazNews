@@ -8,14 +8,12 @@ export function* getTopNewsSaga(action) {
         const data = yield call(get({
             url: restApiUrls.getTopNews,
         }));
-        console.log(data);
-        // yield put({ type: actions.save_user_data_success, payload: data });
+        yield put({ type: actions.getTopNewsSuccess, payload: data.data });
     } catch (e) {
-        console.log(e);
-        // yield put({ type: actions.save_user_data_failure, payload: e.message });
+        yield put({ type: actions.getTopNewsFailure, payload: e.message });
     }
 }
 
 export function* rootSaga() {
-    yield takeEvery([actions.getNews], getTopNewsSaga);
+    yield takeEvery([actions.getTopNews], getTopNewsSaga);
 }

@@ -1,4 +1,6 @@
 export const actions = {
     loading: 'Loading',
-    getNews: "Get_News"
+    getTopNews: "Get_Top_News",
+    getTopNewsSuccess: "Get_News_Success",
+    getTopNewsFailure: "Get_News_Failure"
 } 
