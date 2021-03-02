@@ -1,9 +1,10 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { call, delay, put, select, takeEvery } from 'redux-saga/effects';
 
 import { actions } from '../constants';
 import { get, restApiUrls } from "../../Utils/fetchInterceptor";
 
 export function* getTopNewsSaga(action) {
+    yield put({ type: actions.loading, payload: true });
     try {
         const data = yield call(get({
             url: restApiUrls.getTopNews,
@@ -12,6 +13,8 @@ export function* getTopNewsSaga(action) {
     } catch (e) {
         yield put({ type: actions.getTopNewsFailure, payload: e.message });
     }
+    yield delay(500);
+    yield put({ type: actions.loading, payload: false });
 }
 
 export function* rootSaga() {

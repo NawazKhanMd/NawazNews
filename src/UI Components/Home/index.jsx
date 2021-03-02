@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopNews } from '../../ReduxFiles/actions';
+import { TopStories } from '../TopStories';
 
 export const Home = () => {
     const dispatch = useDispatch()
@@ -10,6 +11,6 @@ export const Home = () => {
         dispatch(getTopNews());
     }, [dispatch])
     return (
-        <div>{JSON.stringify(TopNewsCodes)}</div>
+        <TopStories TopNewsCodes={TopNewsCodes}/>
     )
 }
