@@ -6,3 +6,7 @@ export const loading = flag => ({
 export const getTopNews = () => ({
   type: actions.getTopNews
 });
+export const getANews = (code) => ({
+  type: actions.getANews,
+  payload: code
+});
