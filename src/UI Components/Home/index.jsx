@@ -1,16 +1,16 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTopNews } from '../../ReduxFiles/actions';
-import { TopStories } from '../TopStories';
+import Base from './Home';
 
 export const Home = () => {
+    const TopNewsCodes = useSelector(state => state.GData.TopNewsCodes);
     const dispatch = useDispatch()
-    const TopNewsCodes = useSelector(state=> state.GData.TopNewsCodes)
-    useEffect(() => {
-        dispatch(getTopNews());
-    }, [dispatch])
+    const getNews = () => {
+        dispatch(getTopNews())
+    }
     return (
-        <TopStories TopNewsCodes={TopNewsCodes}/>
+        <Base TopNewsCodes={TopNewsCodes} getNews={getNews} />
     )
 }

@@ -22,9 +22,7 @@ const getIcon = (type) => {
     }
 }
 
-const Base = ({ code }) => {
-    const dispatch = useDispatch();
-    const data = useSelector(state => state.GData.NewsData[code]);
+export const Base = ({ code, data, getNews }) => {
     const [show, setText] = useState(false)
     const handleSelect = () => {
         if (data.url === undefined) {
@@ -32,8 +30,9 @@ const Base = ({ code }) => {
         }
     }
     useEffect(() => {
-        dispatch(getANews(code))
-    }, [code, dispatch])
+        getNews(code);
+    }, [code]);
+
     return (
         <div className="story">
             {data &&
@@ -44,7 +43,7 @@ const Base = ({ code }) => {
                         </a>
                         <p><span>by: {data.by} {[...allowedEmoji][Math.floor(Math.random() * ([...allowedEmoji].length - 1))]}</span><span>{moment(Date(data.time)).format("MMM-DD")}</span></p>
                     </div>
-                    {show && data && <p className="body" dangerouslySetInnerHTML={{__html: data.text}} ></p>}
+                    {show && data && <p className="body" dangerouslySetInnerHTML={{ __html: data.text }} ></p>}
                 </>
             }
             {!data &&
@@ -53,4 +52,16 @@ const Base = ({ code }) => {
     )
 }
 
-export default memo(Base);
+
+const TopStory = ({ code }) => {
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.GData.NewsData[code]);
+    const getNews = codeFromBase => {
+        dispatch(getANews(codeFromBase))
+    }
+    return (
+        <Base code={code} data={data} getNews={getNews} />
+    )
+}
+
+export default memo(TopStory);

@@ -1,8 +1,9 @@
 
 import React from 'react';
+import { memo } from 'react';
 import { ErrorBoundary } from './ErroBoundry';
 import TopStory from './TopStory';
-export const TopStories = ({ TopNewsCodes }) => {
+const TopStories = ({ TopNewsCodes }) => {
     const RowCount = 25;
     const [page, setPage] = React.useState(1);
     const paginate = function (array, index, size) {
@@ -19,18 +20,28 @@ export const TopStories = ({ TopNewsCodes }) => {
     }
     const handlePagination = (number) => {
         setPage(page + number);
-        document.getElementById("scroller").scroll(0,0)
+        try {
+            document.getElementById("scroller").scroll(0, 0)
+        } catch (error) {
+            console.log("Scrolll Not supported!")
+        }
     }
     return (
         <>
             <div className="topStoriesContainer">
-                {paginate(TopNewsCodes, page, RowCount).map((Story, index) => 
-                <ErrorBoundary><TopStory code={Story} key={index} /></ErrorBoundary>)}
+                {paginate(TopNewsCodes, page, RowCount).map((Story, index) =>
+                    <ErrorBoundary key={index}><TopStory code={Story} /></ErrorBoundary>)
+                }
             </div>
             <div className="centerAlign">
-                {page > 1 && <button className="moreButton" onClick={() => handlePagination(-1)}>Prev</button>}
-                {Math.abs(TopNewsCodes/RowCount) !== page && <button className="moreButton" onClick={() => handlePagination(1)}>Next</button>}
+                {page > 1 &&
+                    <button className="moreButton" onClick={() => handlePagination(-1)}>Prev</button>
+                }
+                {Math.abs(TopNewsCodes / RowCount) !== page &&
+                    <button className="moreButton" onClick={() => handlePagination(1)}>Next</button>
+                }
             </div>
         </>
     )
-}
+};
+export default memo(TopStories);
