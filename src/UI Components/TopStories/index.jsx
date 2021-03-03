@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { ErrorBoundary } from './ErroBoundry';
 import TopStory from './TopStory';
 export const TopStories = ({ TopNewsCodes }) => {
     const RowCount = 25;
@@ -23,7 +24,8 @@ export const TopStories = ({ TopNewsCodes }) => {
     return (
         <>
             <div className="topStoriesContainer">
-                {paginate(TopNewsCodes, page, RowCount).map((Story, index) => <TopStory code={Story} key={index} />)}
+                {paginate(TopNewsCodes, page, RowCount).map((Story, index) => 
+                <ErrorBoundary><TopStory code={Story} key={index} /></ErrorBoundary>)}
             </div>
             <div className="centerAlign">
                 {page > 1 && <button className="moreButton" onClick={() => handlePagination(-1)}>Prev</button>}
