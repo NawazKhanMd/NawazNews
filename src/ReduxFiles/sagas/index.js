@@ -1,18 +1,22 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { call, delay, put, select, takeEvery } from 'redux-saga/effects';
 
 import { actions } from '../constants';
-import { saveUserData } from './api';
+import { get, restApiUrls } from "../../Utils/fetchInterceptor";
 
-export function* saveUserDataSideEffect(action) {
-    const storeData = yield select();
+export function* getTopNewsSaga(action) {
+    yield put({ type: actions.loading, payload: true });
     try {
-        const data = yield call(saveUserData(storeData.UserData));
-        yield put({ type: actions.save_user_data_success, payload: data });
+        const data = yield call(get({
+            url: restApiUrls.getTopNews,
+        }));
+        yield put({ type: actions.getTopNewsSuccess, payload: data.data });
     } catch (e) {
-        yield put({ type: actions.save_user_data_failure, payload: e.message });
+        yield put({ type: actions.getTopNewsFailure, payload: e.message });
     }
+    yield delay(500);
+    yield put({ type: actions.loading, payload: false });
 }
 
 export function* rootSaga() {
-    yield takeEvery([actions.save_user_data,actions.save_office_data,actions.user_sign,actions.profile_picture], saveUserDataSideEffect);
+    yield takeEvery([actions.getTopNews], getTopNewsSaga);
 }

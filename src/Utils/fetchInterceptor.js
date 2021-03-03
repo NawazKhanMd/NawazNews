@@ -1,5 +1,8 @@
 const key = '';
-export const restApiUrls = {}
+export const restApiUrls = {
+  getTopNews : "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
+  getPost : "https://hacker-news.firebaseio.com/v0/item/#{Number}#.json"
+}
 
 const axios = require('axios');
 const baseURL = '';

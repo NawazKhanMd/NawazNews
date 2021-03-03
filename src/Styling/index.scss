@@ -15,6 +15,26 @@ html {
     overflow: hidden;
 }
 
+.layoutContainer{
+    padding: 20px;
+    height: 100vh;
+    overflow: auto;
+}
+
+.loadingContainer {
+    background-image: url("../images/logo.PNG");
+    background-color: $bgColor;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
 //reusable stylings
 .f_row {
     flex-direction: row;
@@ -157,13 +177,14 @@ html {
     border-right: 1px solid $grey;
     border-right-style: dashed;
 }
-.layoutContainer{
-    padding: 20px;
-}
 
 //media Quiries
 
 @media only screen and (max-width: 600px) {
+    
+.loadingContainer {
+    background-image: url("../images/logo2.PNG");
+}
 
 }
 /* Chrome, Safari, Edge, Opera */
