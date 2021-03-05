@@ -25,11 +25,18 @@ html {
     height: 125px;
     position: fixed;
     width: 125px;
-    background-color: #353334;
+    background-color: $myBlack2;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: column;
     border-bottom-right-radius: 100px;
+    transition-duration: 0.5s;
+    #likedNews {
+        display: none;
+        width: 0px;
+        height: 0px;
+    }
     #logo {
         background-position: center;
         background-repeat: no-repeat;
@@ -37,6 +44,32 @@ html {
         height: 75px;
         width: 75px;
         background-image: url("../images/logoSmall.png");
+    }
+}
+.headerContainer:hover {
+    height: 100%;
+    background-color: $yelow;
+    border-bottom-right-radius: 0px;
+    box-shadow: 0px 0px 5px $myBlack2;
+    #likedNews {
+        display: block;
+        width: 125px;
+        height: 50px;
+        .moreButton {
+            background: $myBlack;
+            color: white;
+            width: 125px;
+            padding: 5px 5px;
+            margin: 0px;
+            border-radius: 0px;
+            transition-duration: 0.5s;
+            border-left: none;
+            border-right: none;
+        }
+        .moreButton:hover {
+            padding: 15px 5px;
+            transform: scale(1);
+        }
     }
 }
 
@@ -63,28 +96,35 @@ html {
 }
 
 .topStoriesContainer {
-    padding: 20px 10%;
+    padding: 20px 15%;
 }
 .moreButton {
-    background:$myBlack;
+    background: $myBlack;
     color: white;
     padding: 5px 50px;
     margin: 10px;
     border-radius: 10px;
+    transition-duration: 0.5s;
 }
-
+.moreButton:hover {
+    transform: scale(1.1);
+}
 .story {
+    transition-duration: 0.7s;
     background: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid;
     padding: 2px 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
     a {
         text-decoration: none;
         color: $myBlack;
         flex: 7;
+        cursor: pointer;
     }
     p {
         margin: 0px;
-        cursor: pointer;
     }
     p:nth-child(2) {
         white-space: nowrap;
@@ -101,155 +141,234 @@ html {
             white-space: pre-wrap !important;
         }
     }
-
     .dispFlx {
         display: flex;
+        flex: 1;
+    }
+    #likeIcon {
+        // top: 35px;
+        // left: -45px;
+        // position: absolute;
+        display: none;
+        height: 40px;
+        width: 40px;
+        background-image: url("../images/like.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding: 20px;
+        margin-left: 15px;
+        transition-duration: 0.7s;
+    }
+    .actionContainer {
+        width: 115px;
+        cursor: pointer;
+        display: none;
+        margin-left: -70px;
+        margin-right: 70px;
     }
 }
 
-//reusable stylings
-.f_row {
-    flex-direction: row;
+.story:hover {
+    padding: 10px 10px;
+    position: inherit;
+    height: 60px;
+    a {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+    .body {
+        display: block !important;
+        white-space: pre-wrap !important;
+        margin: 10px;
+        font-size: 16px;
+        p {
+            white-space: pre-wrap !important;
+        }
+    }
+    .iconContainer {
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        background-color: $white;
+        transition-duration: 0.7s;
+    }
+    .actionContainer {
+        margin-left: -125px;
+        margin-right: 0px;
+        padding: 0px 10px;
+        background-color: $yelow;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition-duration: 0.7s;
+        small {
+            margin-top: 5px;
+            padding: 0px 7px 0px 10px;
+        }
+    }
+    #likeIcon {
+        display: block;
+    }
+    .actionContainer:hover {
+        height: 60px;
+        #likeIcon {
+            padding: 25px;
+        }
+    }
 }
-.f-cloumn {
-    flex-direction: column;
+
+
+/* The animation code */
+@keyframes moveDotToTopLeft {
+    100% {
+        top: 50px;
+        left: 50px;
+        width: 10px;
+        height: 10px;
+    }
 }
-.padding100 {
-    padding: 100px !important;
+
+/* The element to apply the animation to */
+.moveDot {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url("../images/like.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: moveDotToTopLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
 }
-.cursor-pointer {
+
+/* The animation code */
+@keyframes moveLoadingToTopLeft {
+    100% {
+        // width: 0px;
+        transform: scale(0.5);
+        height: 0px;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+    }
+}
+
+/* The element to apply the animation to */
+.hideLoading {
+    transform: scale(1);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    animation-name: moveLoadingToTopLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+.modal {
+    z-index: 100000 !important;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    // background-color: rgb(0,0,0); /* Fallback color */
+    // background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.overFlowA {
+    overflow: auto;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    // margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
 }
-.fontS16 {
-    font-size: 16px;
+
+.dim {
+    filter: brightness(0.5);
 }
-.cross {
-    transform: rotate(45deg);
+.BnW {
+    filter: grayscale(1);
 }
-.d-contents {
-    display: contents;
+.night {
+    filter: invert(1);
 }
-.padding-r-0 {
-    padding-right: 0px !important;
-}
-.margin-r_10 {
-    margin-right: -10px;
-}
-.margin_t_20 {
-    margin-top: 20px;
+.normal {
+    filter: none;
 }
 
-.borderRight {
-    border-right: 1px solid $black;
-    margin-right: 5px;
-}
-.inverted {
-    transform: rotate(180deg);
-}
-.fSize30 {
-    font-size: 30px;
-}
-.fSize20 {
-    font-size: 20px;
-}
-.fSize10 {
-    font-size: 10px;
-}
-.padding-zero {
-    padding: 0px !important;
-}
-.h100-OYA {
-    height: 100%;
+#miroBoard {
+    height: 585px;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    padding-bottom: 50px;
+    background-image: url("../images/Inspire1.PNG");
 }
-.h100-OYA::-webkit-scrollbar {
-    display: none;
+#miroBoard,
+#inspire2,
+#inspire3,
+#inspire4 {
+    box-shadow: 0px 0px 0px -7px $myBlack2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: scale(1);
+    transition-duration: 0.2s;
 }
-.margin0 {
-    margin: pixelX5(0) !important;
+#miroBoard:hover,
+#inspire2:hover,
+#inspire3:hover,
+#inspire4:hover {
+    box-shadow: 0px 0px 14px -7px $myBlack2;
+    transform: scale(1.05);
 }
-.width100 {
-    width: 100%;
-}
-.orange-text {
-    color: $orange;
-    letter-spacing: 2;
-}
-.small-text-size {
-    font-size: 13px;
-}
-.red-border {
-    border-bottom: 2px solid #ff5230;
-}
-.yellow-border {
-    border-bottom: 2px solid #ffc444;
-}
-.green-border {
-    border-bottom: 2px solid #60d82d;
-}
-.padding-l-5 {
-    padding-left: 5px !important;
-}
-.padding-5 {
-    padding: 5px !important;
-}
-.padding-10 {
-    padding: 10px !important;
-}
-.margin-10 {
-    margin: 10px;
-}
-.marginL20B0 {
-    margin-left: 20px;
-    margin-bottom: 0px;
-}
-.flex-row {
-    flex-direction: row;
-}
-.flex-col {
-    flex-direction: column;
-}
-.justify-content-evenly {
-    justify-content: space-evenly;
-}
-.margin-r-10 {
-    margin-right: 10px;
-}
-.display-flex {
-    display: flex;
-}
-.one-line {
-    flex-direction: row;
-    p {
-        display: contents;
-    }
-    h3 {
-        display: contents;
-    }
-}
-.fSize24 {
-    font-size: 24px;
-}
-.flex1 {
-    flex: 1;
-}
-.f-wrap {
-    flex-wrap: wrap;
-}
-.tab_space {
-    display: inline-block;
-    margin-left: 40px;
-}
-.seperator {
-    border-right: 1px solid $grey;
-    border-right-style: dashed;
+#inspire2 {
+    margin: 50px;
+    height: 200px;
+    width: 50%;
+    background-image: url("../images/Inspire2.PNG");
 }
 
+#inspire3 {
+    height: 385px;
+    width: 100%;
+    background-image: url("../images/Inspire3.PNG");
+}
+#inspire4 {
+    height: 385px;
+    width: 100%;
+    background-image: url("../images/Inspire4.PNG");
+}
 //media Quiries
 
 @media only screen and (max-width: 600px) {
@@ -257,6 +376,7 @@ html {
         background-image: url("../images/logo2.PNG");
     }
 }
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -267,4 +387,15 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.layoutContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.layoutContainer {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }

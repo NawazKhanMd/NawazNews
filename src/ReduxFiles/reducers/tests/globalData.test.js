@@ -6,16 +6,21 @@ describe('Home Reducer', () => {
         const state = GData(undefined, {});
         expect(state).toEqual(initialState);
     });
-    // it('Handles stage update ', () => {
-    //     const data =  1;
-    //     const action = { type: actions.stage, payload: data };
-    //     const state = GData(undefined, action);
-    //     expect(state).toMatchSnapshot();
-    // });
-    // it('Handles Signature save ', () => {
-    //     const data =  false;
-    //     const action = { type: actions.loading, payload: data };
-    //     const state = GData(undefined, action);
-    //     expect(state).toMatchSnapshot();
-    // });
+    it('Handles loading update ', () => {
+        const data =  true;
+        const action = { type: actions.loading, payload: data };
+        const state = GData(undefined, action);
+        expect(state).toMatchSnapshot();
+    });
+    it('Handles getAll News save ', () => {
+        const action = { type: actions.getTopNews};
+        const state = GData(undefined, action);
+        expect(state).toMatchSnapshot();
+    });
+    it('Handles getA News save ', () => {
+        const data =  "someCode";
+        const action = { type: actions.getANews, payload: data };
+        const state = GData(undefined, action);
+        expect(state).toMatchSnapshot();
+    });
 });

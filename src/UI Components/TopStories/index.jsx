@@ -2,9 +2,9 @@
 import React from 'react';
 import { memo } from 'react';
 import { ErrorBoundary } from './ErroBoundry';
-import TopStory from './TopStory';
+import TopStory from '../EachStory';
 const TopStories = ({ TopNewsCodes }) => {
-    const RowCount = 25;
+    const RowCount = Math.ceil(window.innerHeight/ 37);
     const [page, setPage] = React.useState(1);
     const paginate = function (array, index, size) {
         // transform values
@@ -37,7 +37,7 @@ const TopStories = ({ TopNewsCodes }) => {
                 {page > 1 &&
                     <button className="moreButton" onClick={() => handlePagination(-1)}>Prev</button>
                 }
-                {Math.abs(TopNewsCodes / RowCount) !== page &&
+                {TopNewsCodes.length > RowCount &&
                     <button className="moreButton" onClick={() => handlePagination(1)}>Next</button>
                 }
             </div>

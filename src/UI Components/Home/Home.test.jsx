@@ -10,8 +10,9 @@ const ReduxProvider = ({ children, reduxStore }) => (
 describe("Home tests", () => {
 
     jest.mock('../TopStories');
+    jest.mock("../EachStory");
+    jest.mock("../EachStory/EachStory");
 
-    jest.mock("../TopStories/TopStory");
     const store = configureStore([])({});
     const TopNewsCodes = [1, 2, 3, 4, 5, 6, 7, 8];
     const getNews = jest.fn();
