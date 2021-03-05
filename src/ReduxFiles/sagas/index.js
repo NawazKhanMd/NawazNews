@@ -3,7 +3,7 @@ import { call, delay, put, select, takeEvery } from 'redux-saga/effects';
 import { actions } from '../constants';
 import { get, restApiUrls } from "../../Utils/fetchInterceptor";
 
-export function* getTopNewsSaga(action) {
+export function* getTopNewsSaga() {
     yield put({ type: actions.loading, payload: true });
     try {
         const response = yield call(get({

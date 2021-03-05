@@ -8,7 +8,8 @@ import configureStore from "redux-mock-store";
 const ReduxProvider = ({ children, reduxStore }) => (
     <Provider store={reduxStore}>{children}</Provider>
 )
-jest.mock("./TopStory");
+jest.mock("../EachStory/EachStory");
+jest.mock("../EachStory");
 
 describe("TopStories tests", () => {
     const store = configureStore([])({});

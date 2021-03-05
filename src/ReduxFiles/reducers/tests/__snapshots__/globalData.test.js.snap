@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Reducer Handles getA News save  1`] = `
+Object {
+  "NewsData": Object {},
+  "TopNewsCodes": Array [],
+  "loading": false,
+}
+`;
+
+exports[`Home Reducer Handles getAll News save  1`] = `
+Object {
+  "NewsData": Object {},
+  "TopNewsCodes": Array [],
+  "loading": false,
+}
+`;
+
+exports[`Home Reducer Handles loading update  1`] = `
+Object {
+  "NewsData": Object {},
+  "TopNewsCodes": Array [],
+  "loading": true,
+}
+`;

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Base } from "./TopStory";
+import { Base } from "./EachStory";
 import { Provider } from 'react-redux';
 import configureStore from "redux-mock-store";
 

@@ -3,7 +3,8 @@ import { actions } from "../constants";
 export const initialState = {
     loading: false,
     TopNewsCodes: [],
-    NewsData: {}
+    LkedNewsCodes: [],
+    NewsData: {},
 };
 
 
@@ -19,7 +20,13 @@ export const GData = (state = initialState, action) => {
             state.NewsData[action.payload.id] = action.payload
             return { ...state }
         case actions.getANewsFailure:
-            return { ...state, TopNewsCodes: null }
+            state.NewsData[action.payload.id] = { title: "Error Occurrend" }
+            return { ...state }
+        case actions.LikeANews:
+            if (state.LkedNewsCodes.indexOf(action.payload) === -1) {
+                state.LkedNewsCodes.push(action.payload);
+            }
+            return { ...state }
         default:
             return state
     }
